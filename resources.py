@@ -1,17 +1,18 @@
 from flask_restful import Resource, reqparse
 from models.UserModel import UserModel
+from crypt_password import Crypto
 
 parser = reqparse.RequestParser()
 parser.add_argument('username', help = 'This field cannot be blank', required = True)
 parser.add_argument('password', help = 'This field cannot be blank', required = True)
 
 class UserRegister(Resource):
-    
+
     def post(self):
         data = parser.parse_args()
         if UserModel.find_by_username(data['username']):
-            return {'Error':'This user alredy exist'}, 200
-        user = UserModel(username = data['username'], password = data['password'])
+            return {'Error':'{} user alredy exist'.format(data['username'])}, 200
+        user = UserModel(username = data['username'], password = Crypto.generate_hash(data['password']))
         try:
             user.save_to_db()
             return {
@@ -23,7 +24,13 @@ class UserRegister(Resource):
 class UserLogin(Resource):
     def post(self):
         data = parser.parse_args()
-        return data
+        user = UserModel.find_by_username(data['username'])
+        if not user:
+            return {'Error': '{} user does not exist'.format(data['username'])}, 404
+        if Crypto.verify_hash(data['password'],user.password):
+            return {'Msg': 'Logged'}, 200
+        else:
+            return {'msg': 'wrong credentials'}, 200
 
 class TokenRefresh(Resource):
     def post(self):

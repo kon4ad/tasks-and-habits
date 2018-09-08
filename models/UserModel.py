@@ -1,5 +1,4 @@
 from data_base_config import db
-
 class UserModel(db.Model):
     __tablename__ = 'users'
 
