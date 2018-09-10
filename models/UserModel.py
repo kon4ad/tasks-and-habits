@@ -9,7 +9,6 @@ class UserModel(db.Model):
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
-        print('user saved')
 
     @classmethod
     def find_by_username(self, username):

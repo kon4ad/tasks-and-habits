@@ -37,7 +37,7 @@ class AddTask(Resource):
 
 class GetTask(Resource):
     def get(self, task_id):
-        return RegularTask.get_task_by_user_and_id(get_jwt_identity(), task_id).serialize
+        return RegularTask.get_task_by_user_and_id(get_jwt_identity(), task_id)
 
 
 class GetTasks(Resource):
@@ -46,27 +46,29 @@ class GetTasks(Resource):
         return RegularTask.get_task_by_user(get_jwt_identity())
 
 class GetTasksLabels(Resource):
+    @jwt_required
     def get(self):
         sets = set()
-        tasks = RegularTask.get_task_by_user("teest2")
+        tasks = RegularTask.get_task_by_user(get_jwt_identity())
         for task in tasks:
             sets.add(task['label'])
         return list(sets)
 
 class UpdateTask(Resource):
+    @jwt_required
     def post(self):
         data = req2.parse_args()
-        task = RegularTask.get_task_by_user_and_id(data['id'])
+        task = RegularTask.get_task_by_user_and_id(get_jwt_identity(),data['id'])
         task.task_desc = data['task_desc']
         task.label = data['label']
-        task.is_done = data['is_dona']
+        task.is_done = False
         task.end_time = datetime.now()
-        task.commit()
+        task.update()
 
 class DeleteTask(Resource):
-    def delete(self):
-        data = req_mark.parse_args()
-        task = RegularTask.get_task_by_user_and_id(get_jwt_identity(),data['id'])
+    @jwt_required
+    def delete(self, task_id):
+        task = RegularTask.get_task_by_user_and_id(get_jwt_identity(),task_id)
         if task:
             task.delete_task()
             return {'Msg': 'Task deleted'}, 200
@@ -74,9 +76,9 @@ class DeleteTask(Resource):
             return {'Msg': 'Task not found'}, 404
 
 class MarkAsDoneTask(Resource):
-    def post(self):
-        data = req_mark.parse_args()
-        task = RegularTask.get_task_by_user_and_id(get_jwt_identity(), data['id'])
+    @jwt_required
+    def post(self, task_id):
+        task = RegularTask.get_task_by_user_and_id(get_jwt_identity(), task_id)
         if task:
             task.mark_as_done()
             return {"Msg":"Task has been marked as True"}, 200

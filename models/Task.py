@@ -29,7 +29,7 @@ class RegularTask(db.Model):
         db.session.commit()
 
     def delete_task(self):
-        db.session.remove(self)
+        db.session.delete(self)
         db.session.commit()
 
     def update(self):
