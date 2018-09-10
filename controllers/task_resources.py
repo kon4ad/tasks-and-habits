@@ -1,6 +1,5 @@
 from flask_restful import Resource, reqparse, request
 from models.Task import RegularTask
-import time
 from datetime import datetime
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
 
@@ -37,7 +36,7 @@ class AddTask(Resource):
 
 class GetTask(Resource):
     def get(self, task_id):
-        return RegularTask.get_task_by_user_and_id(get_jwt_identity(), task_id)
+        return RegularTask.get_task_by_user_and_id(get_jwt_identity(), task_id).serialize
 
 
 class GetTasks(Resource):
