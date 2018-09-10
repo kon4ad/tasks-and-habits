@@ -44,7 +44,6 @@ class TokenRefresh(Resource):
         return {'access_token': access_token}
 
 class SecretTestResource(Resource):
-    @jwt_required
     def get(self):
         return {'msf':'xxd'}
 

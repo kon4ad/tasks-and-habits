@@ -19,6 +19,7 @@ req2.add_argument('task_desc', help = 'This field cannot be blank', required = T
 req2.add_argument('end_time')
 
 class AddTask(Resource):
+    @jwt_required
     def post(self):
         data = req.parse_args()
         task = RegularTask(username = get_jwt_identity(),
@@ -40,8 +41,9 @@ class GetTask(Resource):
 
 
 class GetTasks(Resource):
+    @jwt_required
     def get(self):
-        return RegularTask.get_task_by_user("teest2")
+        return RegularTask.get_task_by_user(get_jwt_identity())
 
 class GetTasksLabels(Resource):
     def get(self):
@@ -60,7 +62,7 @@ class UpdateTask(Resource):
         task.is_done = data['is_dona']
         task.end_time = datetime.now()
         task.commit()
-        
+
 class DeleteTask(Resource):
     def delete(self):
         data = req_mark.parse_args()
