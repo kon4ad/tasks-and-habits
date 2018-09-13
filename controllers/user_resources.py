@@ -17,7 +17,7 @@ class UserRegister(Resource):
     def post(self):
         data = parser.parse_args()
         if UserModel.find_by_username(data['username']):
-            return {'Error':'{} user alredy exist'.format(data['username'])}, 200
+            return {'Error':'{} user alredy exist'.format(data['username'])}, 500
         user = UserModel(username = data['username'], password = Crypto.generate_hash(data['password']))
         try:
             user.save_to_db()

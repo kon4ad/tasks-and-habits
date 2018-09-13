@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row mt-5">
+      <div class="col-4 offset-4">
+        <div class="row" style="border: solid; border-radius: 10px;border-width: 1px;">
+          <div class="col">
+            <div class="form-group text-center">
+              <h3>Sign up</h3>
+                <label for="usern" class="mt-3" >Email/Username</label>
+                <input class="form-control" [(ngModel)]="username" id="usern">
+                <label id="pas"  >Password</label>
+                <input class="form-control" type="password" [(ngModel)]="password" id="pas">
+                <label id="pas2" >Re-Password</label>
+                <input class="form-control" type="password" [(ngModel)]="repassword" id="pas2">
+                <button [disabled]="(username.length < 3) || (password.length < 3) " (click)="register()" class="btn w-100 mt-5">Sign up!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
