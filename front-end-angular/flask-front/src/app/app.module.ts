@@ -13,12 +13,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/user-service';
 import { AuthService } from './services/auth-service';
 import { CookieService } from 'ngx-cookie-service';
+import { AddingNewTaskComponent } from './main-page/adding-new-task/adding-new-task.component';
+import { TaskListComponent } from './main-page/task-list/task-list.component';
+import { TaskLabelComponent } from './main-page/task-list/task-label/task-label.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    MainPageComponent
+    MainPageComponent,
+    AddingNewTaskComponent,
+    TaskListComponent,
+    TaskLabelComponent
   ],
   imports: [
     BrowserModule,
