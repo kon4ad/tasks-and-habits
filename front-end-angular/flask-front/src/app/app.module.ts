@@ -16,6 +16,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AddingNewTaskComponent } from './main-page/adding-new-task/adding-new-task.component';
 import { TaskListComponent } from './main-page/task-list/task-list.component';
 import { TaskLabelComponent } from './main-page/task-list/task-label/task-label.component';
+import { TaskItemComponent } from './main-page/task-list/task-label/task-item/task-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { TaskLabelComponent } from './main-page/task-list/task-label/task-label.
     MainPageComponent,
     AddingNewTaskComponent,
     TaskListComponent,
-    TaskLabelComponent
+    TaskLabelComponent,
+    TaskItemComponent
   ],
   imports: [
     BrowserModule,

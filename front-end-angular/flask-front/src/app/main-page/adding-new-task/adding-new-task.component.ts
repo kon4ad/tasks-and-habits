@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../../services/user-service';
 
@@ -10,15 +10,19 @@ import { UserService } from '../../services/user-service';
 export class AddingNewTaskComponent implements OnInit {
   public label: string;
   public taskText: string;
-
+  public selectTask: any = "T"
+  public selectHabit: any = "D"
+  public endTime:any;
   constructor(public userService: UserService) { }
 
   ngOnInit() {
   }
 
   addTask(){
-    this.userService.addTask({label: this.label, task_desc: this.taskText}).subscribe(resp => {
+    let date = new Date(this.endTime);
+    this.userService.addTask({label: this.label, task_desc: this.taskText, end_time: date.getTime()}).subscribe(resp => {
       console.log(resp);
+      this.userService.emitter.emit("reload")
     })
   }
 

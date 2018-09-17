@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Task } from '../task-list.component';
 
 @Component({
   selector: 'app-task-label',
@@ -6,18 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-label.component.css']
 })
 export class TaskLabelComponent implements OnInit {
-
+  @Input() label: string;
+  @Input() tasks: Task[];
   constructor() { }
 
   ngOnInit() {
   }
 
-}
-
-export interface Task {
-  label:string;
-  task_desc: string;
-  time_created: any;
-  is_done: boolean;
-  end_time: any;
 }

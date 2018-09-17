@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "./auth-service";
 import { Task } from "../main-page/task-list/task-list.component";
 
 @Injectable()
 export class UserService {
-
+    public emitter: EventEmitter<String> = new EventEmitter();
     constructor(public http: HttpClient, public auth: AuthService){}
 
     login(username: string, password: string){

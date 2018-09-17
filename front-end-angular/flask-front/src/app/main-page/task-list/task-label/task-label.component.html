@@ -1,3 +1,7 @@
-<p>
-  task-label works!
-</p>
+<div class="row">
+<div class="col">
+    <h2><b>#{{label}}</b></h2>
+    <hr>
+    <app-task-item *ngFor="let task of tasks" [task]="task"></app-task-item>
+</div>
+</div>

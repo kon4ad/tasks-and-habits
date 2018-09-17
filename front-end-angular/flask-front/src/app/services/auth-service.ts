@@ -10,9 +10,9 @@ export class AuthService {
     public _router: Router, public _http: HttpClient, public cookie: CookieService){}
    
   saveToken(tokenacc, tokenreff){
-    var expireDate = 10/24;
+    var expireDate = 5/(24*60);
     this.cookie.set("access_token", tokenacc, expireDate, "/");
-    this.cookie.set("refresh_token", tokenreff, expireDate, "/");
+    this.cookie.set("refresh_token", tokenreff, expireDate+5, "/");
   }
  
   getHeader() : HttpHeaders{
@@ -22,7 +22,14 @@ export class AuthService {
  
   isLogged():boolean{
     if (!this.cookie.check('access_token')){
-       // this._router.navigate(['/login']);
+        if(this.cookie.check('refresh_token')){
+          alert("is ok")
+          let get = this._http.get("http://localhost:5000/token/refresh", {headers: new HttpHeaders({'Accept': 'application/json', 'Authorization': 'Bearer '+this.cookie.get('refresh_token')})})
+          get.subscribe(token => {
+            this.saveToken(token['access_token'],this.cookie.get('refresh_token'))
+            return true;
+          })
+        }
         return false;
     }else {
         return true;

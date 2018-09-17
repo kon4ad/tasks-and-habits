@@ -1,1 +1,8 @@
-<app-task-label></app-task-label>
+<div class="row">
+  <div class="col">
+      <app-task-label *ngFor="let task of getKeys(tasksMap)[0]" [label]="task" [tasks]="tasksMap.get(task)"></app-task-label>
+  </div>
+  <div class="col">
+      <app-task-label *ngFor="let task of getKeys(tasksMap)[1]" [label]="task" [tasks]="tasksMap.get(task)"></app-task-label>
+  </div>
+</div>

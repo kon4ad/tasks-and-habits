@@ -24,7 +24,7 @@ class AddTask(Resource):
         task = RegularTask(username = get_jwt_identity(),
                            label= data['label'],
                            task_desc = data['task_desc'],
-                           end_time = datetime.fromtimestamp(123456789),
+                           end_time = datetime.fromtimestamp(int(data['end_time'])/1000),
                            time_created = datetime.now(),
                            is_done=False)
         try:
