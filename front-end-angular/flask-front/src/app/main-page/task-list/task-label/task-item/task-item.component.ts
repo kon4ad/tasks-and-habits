@@ -8,9 +8,14 @@ import { Task } from '../../task-list.component';
 })
 export class TaskItemComponent implements OnInit {
   @Input() task: Task;
+  public showMenu: boolean = false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  show() {
+    this.showMenu = !this.showMenu;
   }
 
 }

@@ -23,7 +23,6 @@ export class AuthService {
   isLogged():boolean{
     if (!this.cookie.check('access_token')){
         if(this.cookie.check('refresh_token')){
-          alert("is ok")
           let get = this._http.get("http://localhost:5000/token/refresh", {headers: new HttpHeaders({'Accept': 'application/json', 'Authorization': 'Bearer '+this.cookie.get('refresh_token')})})
           get.subscribe(token => {
             this.saveToken(token['access_token'],this.cookie.get('refresh_token'))
@@ -38,6 +37,7 @@ export class AuthService {
  
   logout() {
     this.cookie.set("access_token", '', new Date("Thu, 01 Jan 1970 00:00:01 GMT"),"/");
+    this.cookie.set("refresh_token", '', new Date("Thu, 01 Jan 1970 00:00:01 GMT"),"/");
     this.cookie.deleteAll('../', "/");
     this._router.navigate(['/login']);
   } 

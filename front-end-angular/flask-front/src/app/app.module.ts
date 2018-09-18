@@ -17,6 +17,8 @@ import { AddingNewTaskComponent } from './main-page/adding-new-task/adding-new-t
 import { TaskListComponent } from './main-page/task-list/task-list.component';
 import { TaskLabelComponent } from './main-page/task-list/task-label/task-label.component';
 import { TaskItemComponent } from './main-page/task-list/task-label/task-item/task-item.component';
+import { MainGuard } from './guard';
+import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,8 @@ import { TaskItemComponent } from './main-page/task-list/task-label/task-item/ta
     AddingNewTaskComponent,
     TaskListComponent,
     TaskLabelComponent,
-    TaskItemComponent
+    TaskItemComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { TaskItemComponent } from './main-page/task-list/task-label/task-item/ta
     MainRouter,
  
   ],
-  providers: [UserService, CookieService ,AuthService],
+  providers: [UserService, CookieService ,AuthService, MainGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,15 +1,24 @@
-<div class="row">
+<div (mouseenter)="show()" (mouseleave)="show()"  class="row mt-1 task-item">
   <div class="col">
       <div class="row">
           <div class="col">
             <p>{{task.task_desc}}</p>
           </div>
         </div>
+        <hr>
         <div class="row">
             <div class="col">
-              <p style="font-size: 10px;">{{task.time_created | date}}</p>
-              <p style="font-size: 10px;">{{task.end_time | date}}</p>
+              <p style="font-size: 10px;color: grey;">Created: {{task.time_created | date}}</p>
             </div>
-          </div>        
+            <div class="col">
+                <p style="font-size: 10px;color: grey;">Deadline: {{task.end_time | date}}</p>
+              </div>
+          </div>  
+          <hr *ngIf="showMenu">
+          <div *ngIf="showMenu" class="row">
+            <div class="col text-center">&#xf058;</div>
+            <div class="col text-center">&#xf044;</div>
+            <div class="col text-center">&#xf1f8;</div>
+          </div>      
   </div>
 </div>

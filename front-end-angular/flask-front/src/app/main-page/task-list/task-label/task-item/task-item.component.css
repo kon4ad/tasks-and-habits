@@ -1,0 +1,19 @@
+.task-item{
+    border: solid;
+    border-width: 1px;
+    border-color: #757677;
+}
+
+.task-item:hover {
+    cursor: pointer;
+    transform: translateY(-1.5px);
+    background-color: hsl(0, 0%, 92%);
+}
+
+.text-center {
+    font-size: 2em;
+}
+
+.text-center:hover {
+    color: rgb(63, 63, 155);
+}

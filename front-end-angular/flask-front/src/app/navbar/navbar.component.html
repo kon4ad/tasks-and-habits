@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <div class="row" style="border: solid; border-width: 1px;">
+    <div class="col-11">
+      <h3 class="my-1">TASKS AND HABITS</h3>
+    </div>
+    <div class="col-1">
+      <button *ngIf="auth.isLogged()" (click)="auth.logout()" class="btn">Logout!</button>
+    </div>
+  </div>
+</div>
