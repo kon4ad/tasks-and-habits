@@ -14,7 +14,7 @@ api.add_resource(user_resources.UserLogoutAccess, '/logout/access')
 api.add_resource(user_resources.UserLogoutRefresh, '/logout/refresh')
 
 api.add_resource(task_resources.AddTask, '/task/add')
-api.add_resource(task_resources.GetTask, '/task/<task_id>')
+api.add_resource(task_resources.GetTask, '/task/get/<task_id>')
 api.add_resource(task_resources.GetTasks, '/task/get/all')
 api.add_resource(task_resources.DeleteTask, '/task/delete/<task_id>')
 api.add_resource(task_resources.UpdateTask, '/task/update')

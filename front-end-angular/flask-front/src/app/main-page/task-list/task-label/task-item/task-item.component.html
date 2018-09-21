@@ -1,4 +1,4 @@
-<div (mouseenter)="show()" (mouseleave)="show()"  class="row mt-1 task-item">
+<div (mouseenter)="show()" (mouseleave)="show()"  [ngClass]="task.is_done ? 'row mt-1 task-item-done' : 'row mt-1 task-item'">
   <div class="col">
       <div class="row">
           <div class="col">
@@ -16,9 +16,10 @@
           </div>  
           <hr *ngIf="showMenu">
           <div *ngIf="showMenu" class="row">
-            <div class="col text-center">&#xf058;</div>
-            <div class="col text-center">&#xf044;</div>
-            <div class="col text-center">&#xf1f8;</div>
+            <div (click)="markAsDone()" *ngIf="!task.is_done" class="col text-center">&#xf058;</div>
+            <div (click)="markAsDone()" *ngIf="task.is_done" class="col text-center">&#xf057;</div>
+            <div (click)="goEdit()" class="col text-center">&#xf044;</div>
+            <div (click)="delete()" class="col text-center">&#xf1f8;</div>
           </div>      
   </div>
 </div>

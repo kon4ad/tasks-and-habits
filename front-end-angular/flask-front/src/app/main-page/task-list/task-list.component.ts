@@ -48,6 +48,7 @@ export class TaskListComponent implements OnInit {
 }
 
 export interface Task {
+  id:number;
   label:string;
   task_desc: string;
   time_created: any;

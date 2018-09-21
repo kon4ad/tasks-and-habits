@@ -7,11 +7,6 @@ import { AuthService } from "./services/auth-service";
 export class MainGuard implements CanActivate {
     constructor(public auth:AuthService){}
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-         if(this.auth.isLogged()){
-             return true;
-         }else {
-             this.auth.logout();
-             return false;
-         }
+     return this.auth.isLogged();
     }
 }

@@ -4,10 +4,23 @@
     border-color: #757677;
 }
 
+.task-item-done{
+    border: solid;
+    border-width: 1px;
+    background-color: #74ec7a;
+    border-color: #757677;
+}
+
 .task-item:hover {
     cursor: pointer;
     transform: translateY(-1.5px);
     background-color: hsl(0, 0%, 92%);
+}
+
+.task-item-done:hover {
+    cursor: pointer;
+    transform: translateY(-1.5px);
+    background-color: hsl(130, 97%, 75%);
 }
 
 .text-center {

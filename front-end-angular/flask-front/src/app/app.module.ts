@@ -19,6 +19,7 @@ import { TaskLabelComponent } from './main-page/task-list/task-label/task-label.
 import { TaskItemComponent } from './main-page/task-list/task-label/task-item/task-item.component';
 import { MainGuard } from './guard';
 import { NavbarComponent } from './navbar/navbar.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     TaskListComponent,
     TaskLabelComponent,
     TaskItemComponent,
-    NavbarComponent
+    NavbarComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,

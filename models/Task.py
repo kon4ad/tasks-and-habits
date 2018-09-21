@@ -24,6 +24,10 @@ class RegularTask(db.Model):
     def get_task_by_user_and_id(cls, username, id):
         return cls.query.filter_by(username = username, id = id).first()
 
+    @classmethod
+    def get_task_by_user_and_id_json(cls, username, id):
+        return list(map(lambda x: x.serialize,cls.query.filter_by(username = username, id=id).all()))
+
     def mark_as_done(self):
         self.is_done=not self.is_done
         db.session.commit()

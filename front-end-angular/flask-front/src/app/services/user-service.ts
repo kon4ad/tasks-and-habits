@@ -20,7 +20,19 @@ export class UserService {
         return this.http.post("http://localhost:5000/task/add", task, {headers: this.auth.getHeader()})
     }
 
+    getTask(id:number){
+        return this.http.get<Task[]>("http://localhost:5000/task/get/"+id, {headers: this.auth.getHeader()});
+    }
+
     getTasks() {
         return this.http.get<Task[]>("http://localhost:5000/task/get/all", {headers: this.auth.getHeader()})
+    }
+
+    deleteTask(id:number) {
+        return this.http.delete("http://localhost:5000/task/delete/"+id, {headers: this.auth.getHeader()})
+    }
+
+    markAsDone(id:number){
+        return this.http.get("http://localhost:5000/task/mark/oposite/"+id, {headers: this.auth.getHeader()})
     }
 }

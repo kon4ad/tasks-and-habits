@@ -1,7 +1,12 @@
 <div class="row mt-5 mr-3">
 <div class="col">
-    <h2><b>#{{label}}</b></h2>
+    <h2 (click)="doneUndone()"><b>#{{label}}</b></h2>
     <hr>
-    <app-task-item *ngFor="let task of tasks" [task]="task"></app-task-item>
+    <div *ngIf="showDone">
+        <app-task-item *ngFor="let task of tasksDone" [task]="task"></app-task-item>
+    </div>
+    <div *ngIf="!showDone">
+    <app-task-item *ngFor="let task of tasksUndone" [task]="task"></app-task-item>
+  </div>
 </div>
 </div>

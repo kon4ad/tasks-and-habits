@@ -35,8 +35,9 @@ class AddTask(Resource):
 
 
 class GetTask(Resource):
+    @jwt_required
     def get(self, task_id):
-        return RegularTask.get_task_by_user_and_id(get_jwt_identity(), task_id).serialize
+        return RegularTask.get_task_by_user_and_id_json(get_jwt_identity(), task_id)
 
 
 class GetTasks(Resource):
@@ -76,7 +77,7 @@ class DeleteTask(Resource):
 
 class MarkAsDoneTask(Resource):
     @jwt_required
-    def post(self, task_id):
+    def get(self, task_id):
         task = RegularTask.get_task_by_user_and_id(get_jwt_identity(), task_id)
         if task:
             task.mark_as_done()

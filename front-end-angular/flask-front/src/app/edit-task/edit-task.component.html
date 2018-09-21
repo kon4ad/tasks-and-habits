@@ -1,0 +1,38 @@
+    <div *ngIf="task" class="container">
+      <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <div class="row mt-5">
+                <div class="col xx" style="border: 1px solid #ced4da;">
+                  <div class="form-group text-center">
+                    <h3>Edit Task.</h3>
+                      <label for="usern" class="mt-3" >Label</label>
+                      <input class="form-control" [(ngModel)]="task.label" id="usern">
+                      <label id="pas" >Task text</label>
+                      <textarea class="form-control" maxlength="135" style="height: 135px; resize:none;" [(ngModel)]="task.task_desc" id="pas"></textarea>
+                      <select [(ngModel)]="selectTask" class="form-control mt-3">
+                        <option value="T">Task</option>
+                        <option value="H">Habit</option>
+                      </select> 
+                      <div id="T" class="mt-3" *ngIf="selectTask == 'T'">
+                          <label for="time" >End Time</label>
+                        <input id="time" [(ngModel)]="task.end_time" class="form-control" placeholder="YYYY-MM-DD">
+                      </div>
+                      <div id="H" class="mt-3" *ngIf="selectTask == 'H'">
+                          <label >Repeat time</label>
+                          <select [(ngModel)]="selectHabit" class="form-control mt-3">
+                              <option value="D">Daily</option>
+                              <option value="W">Weekly</option>
+                              <option value="M">Monthly</option>
+                              <option value="Y">Yearly</option>
+                            </select>
+                      </div>
+                      <button (click)="addTask()" class="btn btn-primary w-100 mt-5">Edit Task!</button>
+                    </div>
+              </div>
+            </div>
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+    
