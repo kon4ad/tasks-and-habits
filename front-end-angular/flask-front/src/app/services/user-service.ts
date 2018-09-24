@@ -23,6 +23,9 @@ export class UserService {
     getTask(id:number){
         return this.http.get<Task[]>("http://localhost:5000/task/get/"+id, {headers: this.auth.getHeader()});
     }
+    updateTask(task: Task){
+        return this.http.post("http://localhost:5000/task/update", task, {headers: this.auth.getHeader()})
+    }
 
     getTasks() {
         return this.http.get<Task[]>("http://localhost:5000/task/get/all", {headers: this.auth.getHeader()})

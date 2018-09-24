@@ -1,5 +1,6 @@
-<div class="row">
-  <div class="col">
+<h1>Task Board</h1>
+<div class="row" style="border: solid; background-color: white;">
+  <div class="col ml-3">
       <app-task-label *ngFor="let task of getKeys(tasksMap)[0]" [label]="task" [tasks]="tasksMap.get(task)"></app-task-label>
   </div>
   <div class="col">

@@ -1,6 +1,6 @@
 
      <div class="row mt-5">
-        <div class="col" style="border: 1px solid #ced4da;">
+        <div class="col" style="border: 1px solid #ced4da;background-color: white;">
           <div class="form-group text-center">
             <h3>Adding new Task.</h3>
               <label for="usern" class="mt-3" >Label</label>
@@ -18,10 +18,8 @@
               <div id="H" class="mt-3" *ngIf="selectTask == 'H'">
                   <label >Repeat time</label>
                   <select [(ngModel)]="selectHabit" class="form-control mt-3">
-                      <option value="D">Daily</option>
-                      <option value="W">Weekly</option>
-                      <option value="M">Monthly</option>
-                      <option value="Y">Yearly</option>
+                      <option value="D">Wait 24h to reset</option>
+                      <option value="W">Reset at midnight</option>
                     </select>
               </div>
               <button (click)="addTask()" class="btn btn-primary w-100 mt-5">Add Task!</button>

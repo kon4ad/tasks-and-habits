@@ -16,6 +16,7 @@ req2.add_argument('id', help = 'This field cannot be blank', required = True)
 req2.add_argument('label', help = 'This field cannot be blank', required = True)
 req2.add_argument('task_desc', help = 'This field cannot be blank', required = True)
 req2.add_argument('end_time')
+req2.add_argument('is_done', help = 'This field cannot be blank', required = True)
 
 class AddTask(Resource):
     @jwt_required
@@ -59,11 +60,16 @@ class UpdateTask(Resource):
     def post(self):
         data = req2.parse_args()
         task = RegularTask.get_task_by_user_and_id(get_jwt_identity(),data['id'])
-        task.task_desc = data['task_desc']
-        task.label = data['label']
-        task.is_done = False
-        task.end_time = datetime.now()
-        task.update()
+        if task:
+            task.task_desc = data['task_desc']
+            task.label = data['label']
+            task.is_done = False
+            task.end_time = datetime.fromtimestamp(int(data['end_time'])/1000)
+            task.update()
+            return {'Msg': 'Task updated'}, 200
+        else:
+            return {'Msg': 'Task not updated'}, 404
+
 
 class DeleteTask(Resource):
     @jwt_required

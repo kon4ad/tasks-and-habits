@@ -1,6 +1,8 @@
 <div class="row mt-5 mr-3">
 <div class="col">
-    <h2 (click)="doneUndone()"><b>#{{label}}</b></h2>
+    <h2><b>#{{label}}</b></h2>
+    <p (click)="doneUndone()" *ngIf="showDone" style="cursor: pointer;">show un-done</p>
+    <p (click)="doneUndone()" *ngIf="!showDone" style="cursor: pointer;">show done</p>
     <hr>
     <div *ngIf="showDone">
         <app-task-item *ngFor="let task of tasksDone" [task]="task"></app-task-item>
