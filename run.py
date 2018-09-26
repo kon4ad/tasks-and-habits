@@ -4,7 +4,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
-from controllers import user_resources,task_resources
+from controllers import user_resources,task_resources, habits_resources
 
 api.add_resource(user_resources.UserRegister, "/register")
 api.add_resource(user_resources.UserLogin, "/login")
@@ -12,6 +12,9 @@ api.add_resource(user_resources.SecretTestResource, "/content")
 api.add_resource(user_resources.TokenRefresh, "/token/refresh")
 api.add_resource(user_resources.UserLogoutAccess, '/logout/access')
 api.add_resource(user_resources.UserLogoutRefresh, '/logout/refresh')
+
+api.add_resource(habits_resources.AddHabit, '/habit/add')
+api.add_resource(habits_resources.GetAllHabitsToDone, '/habit/get/all')
 
 api.add_resource(task_resources.AddTask, '/task/add')
 api.add_resource(task_resources.GetTask, '/task/get/<task_id>')
