@@ -15,6 +15,7 @@ api.add_resource(user_resources.UserLogoutRefresh, '/logout/refresh')
 
 api.add_resource(habits_resources.AddHabit, '/habit/add')
 api.add_resource(habits_resources.GetAllHabitsToDone, '/habit/get/all')
+api.add_resource(habits_resources.SetHabitAsDone,'/habit/mark/<habit_id>')
 
 api.add_resource(task_resources.AddTask, '/task/add')
 api.add_resource(task_resources.GetTask, '/task/get/<task_id>')

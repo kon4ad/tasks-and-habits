@@ -28,3 +28,10 @@ class GetAllHabitsToDone(Resource):
     @jwt_required
     def get(self):
        return Habit.get_habit_by_user(get_jwt_identity())
+
+class SetHabitAsDone(Resource):
+    @jwt_required
+    def get(self, habit_id):
+        habit = Habit.get_habit_by_user_and_id(get_jwt_identity(), habit_id)
+        habit.mark_as_daily_done()
+        return {'msg':'Marked'}, 200

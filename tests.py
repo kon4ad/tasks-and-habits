@@ -63,7 +63,15 @@ class FlaskrTestCase(unittest.TestCase):
         resp_post = self.app.post('/habit/add', data={"habit_desc": "elo",  'reset_24h':"True"}, headers = {"Authorization":"Bearer {}".format(self.access_token), "Content-Type":"application/x-www-form-urlencoded"})
         response = self.app.get('/habit/get/all', headers = {"Authorization":"Bearer {}".format(self.access_token), "Content-Type":"application/json"})
         data = json.loads(response.get_data().decode(sys.getdefaultencoding()))
-        print(data)
         self.assertEqual(len(data), 1)
+
+    def test_habit_mark(self):
+        resp_post = self.app.post('/habit/add', data={"habit_desc": "elo",  'reset_24h':"True"}, headers = {"Authorization":"Bearer {}".format(self.access_token), "Content-Type":"application/x-www-form-urlencoded"})
+        response = self.app.get('/habit/get/all', headers = {"Authorization":"Bearer {}".format(self.access_token), "Content-Type":"application/json"})
+        respom = self.app.get('/habit/mark/1', headers={"Authorization": "Bearer {}".format(self.access_token),"Content-Type": "application/json"})
+        response = self.app.get('/habit/get/all', headers = {"Authorization":"Bearer {}".format(self.access_token), "Content-Type":"application/json"})
+        data = json.loads(response.get_data().decode(sys.getdefaultencoding()))
+        self.assertEqual(len(data), 0)
+
 if __name__ == '__main__':
     unittest.main()

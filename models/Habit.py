@@ -24,10 +24,12 @@ class Habit(db.Model):
         if(self.reset_24h):
             self.next_reset_time = self.time_done + timedelta(days=1)
         else:
-            self.next_reset_time = self.time_done.replace(hour=23, minute=59, second=45)
+            self.next_reset_time = self.time_done.replace(hour=23, minute=59, second=59)
+        self.update_habit()
 
     @classmethod
     def get_habit_by_user(cls, username):
+        cls.check_to_reste()
         return list(map(lambda x: x.serialize,cls.query.filter_by(username = username, is_daily_done = False).all()))
 
     @classmethod
@@ -40,6 +42,13 @@ class Habit(db.Model):
 
     def update_habit(self):
         db.session.commit()
+
+    def check_to_reste(self, username):
+        habit_list = list(self.query.filter_by(username=username, is_daily_done=False).all())
+        for habit in habit_list:
+            if(habit.next_reset_time <= datetime.now()):
+                habit.is_daily_done = False
+                habit.update_habit()
 
     @property
     def serialize(self):
